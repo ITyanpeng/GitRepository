@@ -20,11 +20,13 @@ import org.activiti.editor.constants.ModelDataJsonConstants;
 import org.activiti.editor.language.json.converter.BpmnJsonConverter;
 import org.activiti.engine.ActivitiObjectNotFoundException;
 import org.activiti.engine.ActivitiTaskAlreadyClaimedException;
+import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.task.Task;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -66,6 +68,9 @@ import com.zml.oa.util.WorkflowUtils;
 @Controller
 @RequestMapping("/processAction")
 public class ProcessAction {
+	
+	List<Task> tasks = ProcessEngines.getDefaultProcessEngine().getTaskService().createTaskQuery().parentTaskId("")  
+            .taskDescription("jointProcess").list();  
 	private static final Logger logger = Logger.getLogger(ProcessAction.class);
     
 	@Autowired
