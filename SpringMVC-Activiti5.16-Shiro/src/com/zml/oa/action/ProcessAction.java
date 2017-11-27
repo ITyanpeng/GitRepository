@@ -69,8 +69,6 @@ import com.zml.oa.util.WorkflowUtils;
 @RequestMapping("/processAction")
 public class ProcessAction {
 	
-	List<Task> tasks = ProcessEngines.getDefaultProcessEngine().getTaskService().createTaskQuery().parentTaskId("")  
-            .taskDescription("jointProcess").list();  
 	private static final Logger logger = Logger.getLogger(ProcessAction.class);
     
 	@Autowired
